@@ -1,4 +1,4 @@
-function LegalPage({doc}){const D=window.LEGAL[doc];const H='Oria Surv Landing.html';const [v,setV]=React.useState(false);const [act,setAct]=React.useState(0);
+function LegalPage({doc}){const D=window.LEGAL[doc];const H='index.html';const [v,setV]=React.useState(false);const [act,setAct]=React.useState(0);
 const ids=D.sections.map((s,i)=>'s'+(i+1));
 React.useEffect(()=>{document.title=D.nav+' — Oria Surv';const on=()=>{let k=0;ids.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<160)k=i});setAct(k)};window.addEventListener('scroll',on,{passive:true});on();return()=>window.removeEventListener('scroll',on)},[]);
 const go=(i)=>{const el=document.getElementById(ids[i]);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'})};
