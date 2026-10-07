@@ -1,0 +1,4 @@
+/* Substitutes loaded from Google Fonts — no brand font binaries were provided.
+   Roboto: marketing/display (matches app-store screenshot headlines).
+   Poppins: in-app UI (closest match to the geometric sans in app screenshots). */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap");

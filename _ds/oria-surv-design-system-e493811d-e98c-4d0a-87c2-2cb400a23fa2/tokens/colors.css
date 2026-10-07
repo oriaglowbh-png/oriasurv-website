@@ -1,0 +1,31 @@
+:root{
+/* Brand purple — deep indigo primary (Pay Now, titles, prices) */
+--purple-950:#2A0050;--purple-900:#3A006B;--purple-800:#4B0082;--purple-700:#5A1696;--purple-600:#6F2DB0;
+/* Orchid — marketing headline accent ("All Services", "Progress") */
+--orchid-500:#9B59B6;--orchid-400:#B07CC6;
+/* Periwinkle — secondary headline accent ("Book in Minutes") */
+--periwinkle-500:#7469E8;--periwinkle-400:#8F86F0;
+/* Lavender tints — selected tabs, arrow buttons, illustration panels, map */
+--lavender-300:#D9C8EC;--lavender-200:#E8DCF5;--lavender-100:#F1EAF8;--lavender-50:#F8F4FC;
+/* Neutrals */
+--ink-900:#15151C;--ink-800:#23232D;--gray-700:#3F3F4A;--gray-600:#5B5B66;--gray-500:#6B7280;--gray-400:#9A9AA6;--gray-300:#C9C9D2;--gray-200:#E6E5EC;--gray-100:#F1F1F5;
+--white:#FFFFFF;--page-50:#F7F8FD;
+/* Semantic */
+--green-600:#1E9E3E;--green-100:#E4F6E8;
+--blue-600:#3D6AD6;--blue-100:#E7EEFC;
+--amber-500:#F5B301;--amber-100:#FFF4D6;
+--red-600:#D93636;--red-100:#FDE8E8;
+--scrim:rgba(20,20,28,.52);
+
+/* Aliases */
+--brand-primary:var(--purple-800);--brand-primary-hover:var(--purple-700);--brand-primary-press:var(--purple-900);
+--brand-accent:var(--orchid-500);--brand-accent-alt:var(--periwinkle-500);
+--surface-page:var(--white);--surface-subtle:var(--page-50);--surface-card:var(--white);--surface-tint:var(--lavender-100);--surface-tint-soft:var(--lavender-50);--surface-scrim:var(--scrim);
+--text-strong:var(--ink-900);--text-body:var(--gray-700);--text-muted:var(--gray-500);--text-placeholder:var(--gray-400);--text-brand:var(--purple-800);--text-on-brand:var(--white);--text-price:var(--purple-800);--text-success:var(--green-600);
+--border-subtle:var(--gray-200);--border-strong:var(--gray-300);--border-brand:var(--purple-800);--border-tint:var(--lavender-300);
+--status-progress-fg:var(--blue-600);--status-progress-bg:var(--blue-100);
+--status-done-fg:var(--green-600);--status-done-bg:var(--green-100);
+--status-pending-fg:#9A6B00;--status-pending-bg:var(--amber-100);
+--status-cancel-fg:var(--red-600);--status-cancel-bg:var(--red-100);
+--rating-star:var(--amber-500);
+}
