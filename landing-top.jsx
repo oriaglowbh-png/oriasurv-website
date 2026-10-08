@@ -1,7 +1,8 @@
 const {Icon,Button,Badge,Input,SegmentedTabs,Dialog,SectionHeading,StatBlock,Testimonial,ServiceCategoryCard}=window.OriaSurvDesignSystem_e49381;
 const IMG='https://oriasurv.com/Assets/Images/';
 const Wrap=({id,bg='#fff',children,pad})=><section id={id} style={{background:bg}}><div className="wrap" style={{padding:pad}}>{children}</div></section>;
-const StoreBadges=({h=50})=><div style={{display:'flex',gap:12,flexWrap:'wrap'}}><a href="#download"><img src={IMG+'play-store.webp'} alt="Get it on Google Play" style={{height:h,display:'block'}}/></a><a href="#download"><img src={IMG+'app-store.webp'} alt="Download on the App Store" style={{height:h,display:'block'}}/></a></div>;
+const StoreBadge=({icon,top,name,h})=><a href="#download" className="store-badge" style={{height:h}}><span aria-hidden="true" style={{width:h*.48,height:h*.48,flex:'none',background:'currentColor',WebkitMask:'url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/'+icon+'.svg) center/contain no-repeat',mask:'url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/'+icon+'.svg) center/contain no-repeat'}}></span><span style={{display:'flex',flexDirection:'column',lineHeight:1.05}}><span style={{fontSize:h*.2,fontWeight:500,letterSpacing:'.02em'}}>{top}</span><span style={{fontSize:h*.36,fontWeight:600,letterSpacing:'-.01em'}}>{name}</span></span></a>;
+const StoreBadges=({h=50})=><div style={{display:'flex',gap:12,flexWrap:'wrap'}}><StoreBadge icon="googleplay" top="GET IT ON" name="Google Play" h={h}/><StoreBadge icon="apple" top="Download on the" name="App Store" h={h}/></div>;
 
 function Logo({h=44,light}){const [ok,setOk]=React.useState(true);const [src,setSrc]=React.useState('assets/logo.png');
 if(!ok)return <span style={{display:'flex',alignItems:'baseline',gap:6,font:'700 '+Math.round(h*.56)+'px/1 var(--font-display)',letterSpacing:'-.02em',color:light?'#fff':'var(--brand-primary)'}}>Oria<span style={{color:light?'var(--lavender-200)':'var(--orchid-500, #9B59B6)'}}>Surv</span></span>;
@@ -15,9 +16,9 @@ return <header style={{position:'sticky',top:0,zIndex:30,background:'rgba(255,25
 <button className="burger" aria-label="Menu" onClick={()=>setOpen(!open)}><Icon name={open?'x':'menu'} size={22}/></button></div></div>
 {open&&<nav className="mobile-nav">{links.map(([l,h])=><a key={h} href={base+'#'+h} onClick={()=>setOpen(false)}>{l}</a>)}</nav>}</header>}
 
-const HERO_IMGS=['assets/hero-ac.png','assets/hero-car-wash.png',IMG+'banner2.webp','assets/hero-construction.png'];
+const HERO_IMGS=['assets/hero-ac.png','assets/hero-car-wash.png','assets/hero-construction.png'];
 function Hero({onVendor}){const [aud,setAud]=React.useState('customer');const [b,setB]=React.useState(1);
-React.useEffect(()=>{const t=setInterval(()=>setB(x=>x%4+1),4500);return()=>clearInterval(t)},[]);
+React.useEffect(()=>{const t=setInterval(()=>setB(x=>x%HERO_IMGS.length+1),4500);return()=>clearInterval(t)},[]);
 const C={customer:{eyebrow:"Bahrain's #1 Multi-Service Marketplace",title:'One Platform, All Services',accent:'At Your Fingertips',lede:'Book verified professionals for HVAC, MEP, Construction, Facility Management, Maintenance, Cleaning and more — all from a single trusted platform.'},
 vendor:{eyebrow:'For Service Providers',title:'Grow Your Business',accent:'With Oria Surv',lede:'List your services, receive booking requests from property owners and businesses across Bahrain, send quotes and get paid securely through escrow.'}}[aud];
 return <section id="home" style={{background:'var(--page-50)'}}><div className="wrap g2 hero" style={{alignItems:'center'}}>
@@ -28,7 +29,7 @@ return <section id="home" style={{background:'var(--page-50)'}}><div className="
 :<div style={{display:'flex',gap:12,flexWrap:'wrap'}}><Button size="lg" icon="store" onClick={onVendor}>Register as Vendor</Button><Button size="lg" variant="outline" onClick={()=>location.hash='vendors'}>Learn More</Button></div>}
 </div>
 <div style={{position:'relative'}}><div style={{aspectRatio:'4/3.4',borderRadius:28,background:`var(--lavender-100) center/cover url(${HERO_IMGS[b-1]})`,boxShadow:'var(--shadow-raised)',transition:'background-image .6s'}}></div>
-<div style={{display:'flex',gap:6,justifyContent:'center',marginTop:16}}>{[1,2,3,4].map(i=><button key={i} aria-label={'Banner '+i} onClick={()=>setB(i)} style={{width:i===b?28:8,height:8,borderRadius:8,border:0,cursor:'pointer',background:i===b?'var(--brand-primary)':'var(--lavender-300)',transition:'width .3s var(--ease-out)'}}></button>)}</div></div>
+<div style={{display:'flex',gap:6,justifyContent:'center',marginTop:16}}>{HERO_IMGS.map((_,k)=>k+1).map(i=><button key={i} aria-label={'Banner '+i} onClick={()=>setB(i)} style={{width:i===b?28:8,height:8,borderRadius:8,border:0,cursor:'pointer',background:i===b?'var(--brand-primary)':'var(--lavender-300)',transition:'width .3s var(--ease-out)'}}></button>)}</div></div>
 </div>
 <div className="wrap g4" style={{paddingTop:0,paddingBottom:64}}>{[['1,500','Happy Clients'],['500+','Verified Professionals'],['4/5','Average Rating'],['8+','Service Categories']].map(([v,l])=><div key={l} style={{background:'#fff',borderRadius:20,padding:24,boxShadow:'var(--shadow-card)'}}><StatBlock value={v} label={l}/></div>)}</div></section>}
 
@@ -60,4 +61,4 @@ return <Wrap id="services"><SectionHeading align="center" eyebrow="Service Categ
 <div style={{display:'flex',justifyContent:'center',marginTop:32}}><SegmentedTabs items={[{value:'all',label:'All Services'},{value:'Home',label:'For Homes'},{value:'Business',label:'For Businesses'}]} value={f} onChange={setF} style={{width:'100%',maxWidth:460}}/></div>
 <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(250px,1fr))',gap:20,marginTop:32}}>{list.map(([i,t,d,it,,soon])=><ServiceCategoryCard key={t} icon={i} title={t} description={d} items={it} soon={soon}/>)}</div>
 <div style={{display:'flex',justifyContent:'center',marginTop:36}}><Button size="lg" iconRight="arrow-right" onClick={()=>location.hash='download'}>Book a Service in the App</Button></div></Wrap>}
-Object.assign(window,{Logo,Wrap,StoreBadges,IMG,SiteHeader,Hero,About,AppTour,Services});
+Object.assign(window,{StoreBadge,Logo,Wrap,StoreBadges,IMG,SiteHeader,Hero,About,AppTour,Services});
