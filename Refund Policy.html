@@ -10,6 +10,9 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="_ds/oria-surv-design-system-e493811d-e98c-4d0a-87c2-2cb400a23fa2/_ds_bundle.js"></script>
 <script src="reveal.js"></script>
+<script src="i18n-ar.js"></script>
+<script src="i18n-ar-legal.js"></script>
+<script src="i18n.js"></script>
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:#fff}
 a{color:var(--brand-primary);text-decoration:none}a:hover{color:var(--purple-700)}
@@ -51,6 +54,13 @@ a{color:var(--brand-primary);text-decoration:none}a:hover{color:var(--purple-700
 .glance>div{background:var(--surface-tint-soft);border:1px solid var(--lavender-200);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px}
 .ccard{display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;background:var(--page-50);border:1px solid var(--border-subtle)}a.ccard[href]:hover{border-color:var(--lavender-300)}
 @media (max-width:900px){.legal-grid{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;display:none}.lsec{padding:22px 20px}}
+html[lang=ar]{--font-display:"Noto Kufi Arabic","Geeza Pro",Tahoma,sans-serif;--font-ui:"Noto Kufi Arabic","Geeza Pro",Tahoma,sans-serif;--font-body:"Noto Kufi Arabic","Geeza Pro",Tahoma,sans-serif;--ls-display:0}
+html[lang=ar] body *{letter-spacing:0!important}html[lang=ar] h1,html[lang=ar] h2{line-height:1.4!important}
+html[dir=rtl] [style*="text-align: left"]{text-align:right!important}
+html[dir=rtl] .os-icon[style*="arrow-right"],html[dir=rtl] .os-icon[style*="chevron-right"]{transform:scaleX(-1)}
+html[dir=rtl] input[type=tel],html[dir=rtl] input[type=email]{direction:ltr;text-align:right}
+.lang-btn{display:flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid var(--border-subtle);border-radius:999px;background:#fff;color:var(--brand-primary);cursor:pointer;font:600 14px var(--font-ui);transition:background .2s var(--ease-out),border-color .2s}.lang-btn:hover{background:var(--surface-tint);border-color:var(--lavender-300)}
+.lang-btn span{font-family:"Noto Kufi Arabic",var(--font-ui)}html[lang=ar] .lang-btn span{font-family:"Poppins",system-ui,sans-serif}
 </style></head><body><div id="root"></div>
 <script src="legal-data.js"></script>
 <script type="text/babel" src="landing-top.jsx"></script>

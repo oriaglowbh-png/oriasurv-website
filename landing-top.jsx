@@ -7,12 +7,14 @@ const StoreBadges=({h=50})=><div style={{display:'flex',gap:12,flexWrap:'wrap'}}
 function Logo({h=44,light}){const [ok,setOk]=React.useState(true);const [src,setSrc]=React.useState('assets/logo.png');
 if(!ok)return <span style={{display:'flex',alignItems:'baseline',gap:6,font:'700 '+Math.round(h*.56)+'px/1 var(--font-display)',letterSpacing:'-.02em',color:light?'#fff':'var(--brand-primary)'}}>Oria<span style={{color:light?'var(--lavender-200)':'var(--orchid-500, #9B59B6)'}}>Surv</span></span>;
 return <img src={src} alt="Oria Surv" onError={()=>{if(src==='assets/logo.png')setSrc(IMG+'logo.webp');else setOk(false)}} style={{height:h,display:'block'}}/>}
+function LangToggle(){const [l,setL]=React.useState(window.OriaI18n?window.OriaI18n.lang:'en');React.useEffect(()=>{const f=e=>setL(e.detail);addEventListener('oria-lang',f);return()=>removeEventListener('oria-lang',f)},[]);
+return <button type="button" className="lang-btn" data-noi18n="" onClick={()=>window.OriaI18n&&window.OriaI18n.set(l==='ar'?'en':'ar')} aria-label={l==='ar'?'Switch to English':'التبديل إلى العربية'}><Icon name="languages" size={18}/><span>{l==='ar'?'English':'العربية'}</span></button>}
 function SiteHeader({onVendor,base=''}){const links=[['Home','home'],['About','about'],['App Tour','app-tour'],['Services','services'],['How it Works','how-it-works'],['For Vendors','vendors'],['FAQ','faq']];const [open,setOpen]=React.useState(false);
 return <header style={{position:'sticky',top:0,zIndex:30,background:'rgba(255,255,255,.9)',backdropFilter:'blur(12px)',borderBottom:'1px solid var(--border-subtle)'}}>
 <div className="wrap" style={{height:76,display:'flex',alignItems:'center',justifyContent:'space-between',gap:24,padding:'0 24px'}}>
 <a href={base+'#home'} style={{display:'flex',alignItems:'center'}}><Logo h={44}/></a>
 <nav className="nav-links">{links.map(([l,h])=><a key={h} href={base+'#'+h} className="navlink">{l}</a>)}</nav>
-<div style={{display:'flex',gap:10,alignItems:'center'}}><span className="hide-sm"><Button size="sm" variant="outline" onClick={onVendor}>Join as Vendor</Button></span><Button size="sm" onClick={()=>location.href=base+'#download'}>Download App</Button>
+<div style={{display:'flex',gap:10,alignItems:'center'}}><LangToggle/><span className="hide-sm"><Button size="sm" variant="outline" onClick={onVendor}>Join as Vendor</Button></span><Button size="sm" onClick={()=>location.href=base+'#download'}>Download App</Button>
 <button className="burger" aria-label="Menu" onClick={()=>setOpen(!open)}><Icon name={open?'x':'menu'} size={22}/></button></div></div>
 {open&&<nav className="mobile-nav">{links.map(([l,h])=><a key={h} href={base+'#'+h} onClick={()=>setOpen(false)}>{l}</a>)}</nav>}</header>}
 
@@ -61,4 +63,4 @@ return <Wrap id="services"><SectionHeading align="center" eyebrow="Service Categ
 <div style={{display:'flex',justifyContent:'center',marginTop:32}}><SegmentedTabs items={[{value:'all',label:'All Services'},{value:'Home',label:'For Homes'},{value:'Business',label:'For Businesses'}]} value={f} onChange={setF} style={{width:'100%',maxWidth:460}}/></div>
 <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(250px,1fr))',gap:20,marginTop:32}}>{list.map(([i,t,d,it,,soon])=><ServiceCategoryCard key={t} icon={i} title={t} description={d} items={it} soon={soon}/>)}</div>
 <div style={{display:'flex',justifyContent:'center',marginTop:36}}><Button size="lg" iconRight="arrow-right" onClick={()=>location.hash='download'}>Book a Service in the App</Button></div></Wrap>}
-Object.assign(window,{StoreBadge,Logo,Wrap,StoreBadges,IMG,SiteHeader,Hero,About,AppTour,Services});
+Object.assign(window,{LangToggle,StoreBadge,Logo,Wrap,StoreBadges,IMG,SiteHeader,Hero,About,AppTour,Services});
